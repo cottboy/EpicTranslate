@@ -1,0 +1,85 @@
+{
+  "name": "epic-translate",
+  "version": "1.0.0",
+  "license": "MIT",
+  "author": "Your Name",
+  "description": "A powerful translation tool for learning purposes",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder --win portable",
+    "build-portable": "electron-builder --win portable",
+    "generate-notice": "node generate-notice.js",
+    "make-icons": "electron-icon-maker --input=./assets/5.png --output=./build"
+  },
+  "build": {
+    "appId": "com.epictranslate.app",
+    "win": {
+      "target": [
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "./build/icons/win/icon.ico",
+      "signingHashAlgorithms": null,
+      "signAndEditExecutable": false
+    },
+    "portable": {
+      "artifactName": "EpicTranslate.exe"
+    },
+    "asar": true,
+    "compression": "maximum",
+    "files": [
+      "src/**/*",
+      "index.html",
+      "!**/node_modules/*/{CHANGELOG.md,README.md,README,readme.md,readme}",
+      "!**/node_modules/*/{test,__tests__,tests,powered-test,example,examples}",
+      "!**/node_modules/*.d.ts",
+      "!**/node_modules/.bin",
+      "!**/*.{iml,o,hprof,orig,pyc,pyo,rbc,swp,csproj,sln,xproj}",
+      "!.editorconfig",
+      "!**/._*",
+      "!**/{.DS_Store,.git,.hg,.svn,CVS,RCS,SCCS,.gitignore,.gitattributes}",
+      "!**/{__pycache__,thumbs.db,.flowconfig,.idea,.vs,.nyc_output}",
+      "!**/{appveyor.yml,.travis.yml,circle.yml}",
+      "!**/{npm-debug.log,yarn.lock,.yarn-integrity,.yarn-metadata.json}"
+    ],
+    "extraResources": [
+      {
+        "from": "LICENSE",
+        "to": "LICENSE"
+      },
+      {
+        "from": "NOTICE.md",
+        "to": "NOTICE.md"
+      },
+      {
+        "from": "build/icons/win/icon.ico",
+        "to": "assets/icon.ico"
+      },
+      {
+        "from": "app.manifest",
+        "to": "app.manifest"
+      }
+    ],
+    "fileAssociations": [
+      {
+        "ext": "epictranslate",
+        "name": "EpicTranslate File",
+        "icon": "./build/icons/win/icon.ico"
+      }
+    ]
+  },
+  "dependencies": {
+    "electron-store": "^8.1.0"
+  },
+  "devDependencies": {
+    "electron": "^28.1.0",
+    "electron-builder": "^24.9.1",
+    "electron-icon-maker": "^0.0.5",
+    "license-checker": "^25.0.1"
+  }
+}
